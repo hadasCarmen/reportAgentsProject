@@ -1,0 +1,11 @@
+.allPage{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+.allPage>*{
+    margin: 1rem;
+    background-color: blue;
+    padding: 1rem;
+
+}

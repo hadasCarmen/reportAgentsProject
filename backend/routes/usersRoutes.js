@@ -15,7 +15,7 @@ import { myReportsController } from "../controllers/myReportsController.js";
 const router = express.Router();
 
 router.post("/api/login", loginController);
-router.post('/api/signin',justAdmin,signinController)
+router.post('/api/signin',authMiddleware,justAdmin,signinController)
 router.get('/api/allUsers',authMiddleware,justAdmin,allUsersController)
 router.get('/api/allReports',authMiddleware,justAdmin,allReportsController)
 router.get('/api/myReports',authMiddleware,myReportsController)

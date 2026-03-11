@@ -1,0 +1,13 @@
+category,urgency,message,imagePath,sourceType
+Maintenance,High,Leaking faucet in the kitchen,,csv
+Cleaning,Medium,Stains on the living room carpet,,csv
+Noise,Low,Neighbor's loud music at night,,csv
+Maintenance,High,Air conditioning not working,,csv
+Cleaning,Medium,Dirty windows in the bedroom,,csv
+Noise,Low,Construction noise during the day,,csv
+Maintenance,High,Clogged bathroom drain,,csv
+Cleaning,Medium,Unpleasant odor in the kitchen,,csv
+Noise,Low,Dog barking in the neighborhood,,csv
+Maintenance,High,Broken window in the living room,,csv
+Cleaning,Medium,Spills on the dining table,,csv
+Noise,Low,Traffic noise from the nearby road,,csv
