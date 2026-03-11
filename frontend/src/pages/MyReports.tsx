@@ -31,7 +31,7 @@ export default function MyReports() {
 
   return (
     <div>
-      {reports.map((report: any, idx: number) => {
+      {reports.length>0?reports.map((report: any, idx: number) => {
         return (
           <div key={idx}>
             <strong>report {idx + 1}</strong>
@@ -41,7 +41,8 @@ export default function MyReports() {
             {report.imagePath}. sourceType:{report.sourceType}. <br />
           </div>
         );
-      })}
+      }):<h1>you dont have reports  </h1>
+    }
     </div>
   );
 }
