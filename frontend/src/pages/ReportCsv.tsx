@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function ReportCsv() {
   const [fileCurrent, setFileCurrent] = useState<File | null>(null);
-  const [numberOfReports,setNumberOfReports]=useState<number>(0)
+  // const [numberOfReports,setNumberOfReports]=useState<number>(0)
   const sendCsv = async () => {
     if (!fileCurrent) return;
 
@@ -20,7 +21,8 @@ export default function ReportCsv() {
       body:formData
     })
     const {created}=await response.json()
-    setNumberOfReports(created)
+    created?toast.success(`created ${created} reports`):toast.error('not reports created')
+    // setNumberOfReports(created)
   };
 
   return (
@@ -32,7 +34,7 @@ export default function ReportCsv() {
         onChange={(e) => setFileCurrent(e.target.files?.[0] || null)}
       />
       <button onClick={sendCsv}>upload reports from csv</button>
-    {numberOfReports?<div>{numberOfReports} send succses</div>:null}
+    {/* {numberOfReports?<div>{numberOfReports} send succses</div>:null} */}
     </div>
     
   );
