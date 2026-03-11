@@ -4,19 +4,19 @@ export default function AgentPage() {
   const navigate = useNavigate();
 
   const reportHandig=()=>{
-    navigate('./reportHandig')
+    navigate('/reportHandig')
   }
   const reportCsv=()=>{
-    navigate('./reportCsv')
+    navigate('/reportCsv')
   }
   const myReports=()=>{
-    navigate('./myReports')
+    navigate('/myReports')
   }
   return (
     <div>
       <button onClick={reportHandig}>new report handing</button>
       <button onClick={reportCsv}>new report csv</button>
-      <section onClick={myReports}>my reports</section>
+      <button onClick={myReports}>my reports</button>
     </div>
   );
 }

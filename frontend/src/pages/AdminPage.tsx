@@ -30,7 +30,7 @@ export default function AdminPage() {
       <button onClick={allAgents}>see all agents</button>
       <button onClick={reportHandig}>new report handing</button>
       <button onClick={reportCsv}>new report csv</button>
-      <section onClick={myReports}>my reports</section>
+      <button onClick={myReports}>my reports</button>
       <button onClick={allReports}>see all reports</button>
     </div>
   );
