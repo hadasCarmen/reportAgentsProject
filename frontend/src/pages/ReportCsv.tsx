@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
@@ -6,7 +6,6 @@ export default function ReportCsv() {
     const navigate = useNavigate();
 
   const [fileCurrent, setFileCurrent] = useState<File | null>(null);
-  // const [numberOfReports,setNumberOfReports]=useState<number>(0)
   const sendCsv = async () => {
     if (!fileCurrent) return;
 
@@ -25,7 +24,6 @@ export default function ReportCsv() {
     })
     const {created}=await response.json()
     created?toast.success(`created ${created} reports`):toast.error('not reports created')
-    // setNumberOfReports(created)
   };
 const adminNavigate = () => {
     if (localStorage.getItem("role") === "admin") {
@@ -57,7 +55,6 @@ const adminNavigate = () => {
         onChange={(e) => setFileCurrent(e.target.files?.[0] || null)}
       />
       <button onClick={sendCsv}>upload reports from csv</button>
-    {/* {numberOfReports?<div>{numberOfReports} send succses</div>:null} */}
     </div>
     
   );
