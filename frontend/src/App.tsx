@@ -10,7 +10,8 @@ import AllAgents from "./pages/AllAgents.tsx";
 import AllReports from "./pages/AllReports.tsx";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer } from "react-toastify";
+import Protected from "./pages/Protected.tsx";
 
 function App() {
   return (
@@ -18,15 +19,17 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/adminPage" element={<AdminPage />} />
-          <Route path="/agentPage" element={<AgentPage />} />
-          <Route path="/reportHandig" element={<ReportHandig />} />
-          <Route path="/reportCsv" element={<ReportCsv />} />
-          <Route path="/myReports" element={<MyReports/>} />
-          <Route path="/createAcount" element={<CreateAcount/>} />
-          <Route path="/allAgents" element={<AllAgents/>} />
-          <Route path="/allReports" element={<AllReports/>} />
-        </Routes >
+          <Route element={<Protected />}>
+            <Route path="/adminPage" element={<AdminPage />} />
+            <Route path="/agentPage" element={<AgentPage />} />
+            <Route path="/reportHandig" element={<ReportHandig />} />
+            <Route path="/reportCsv" element={<ReportCsv />} />
+            <Route path="/myReports" element={<MyReports />} />
+            <Route path="/createAcount" element={<CreateAcount />} />
+            <Route path="/allAgents" element={<AllAgents />} />
+            <Route path="/allReports" element={<AllReports />} />
+          </Route>
+        </Routes>
       </BrowserRouter>
       <ToastContainer position="top-right" autoClose={3000} />
     </>

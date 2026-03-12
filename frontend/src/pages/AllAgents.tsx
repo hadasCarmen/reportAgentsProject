@@ -31,7 +31,10 @@ export default function AllAgents() {
     };
     myAgentsNow();
   }, []);
-
+  if (localStorage.getItem("role") !== "admin") {
+    toast.error("go back to the right page");
+    return;
+  }
   return (
     <div>
       <button onClick={() => navigate("/adminPage")}>

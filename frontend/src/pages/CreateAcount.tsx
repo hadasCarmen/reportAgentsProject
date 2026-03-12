@@ -45,6 +45,12 @@ export default function CreateAcount() {
   const [password, setPassword] = useState("");
   const [agentCode, setAgentCode] = useState("");
   const [role, setRole] = useState("");
+  
+  if (localStorage.getItem('role')!=='admin') {
+     toast.error('go back to the right page')
+    return;
+  }
+
   return (
     <div>
       <button onClick={() => navigate("/adminPage")}>

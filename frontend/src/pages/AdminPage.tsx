@@ -1,4 +1,5 @@
 import "./AdminPage.css";
+import { toast } from "react-toastify";
 
 import { useNavigate } from "react-router-dom";
 
@@ -23,7 +24,10 @@ export default function AdminPage() {
   const allReports = () => {
     navigate("/allReports");
   };
-
+  if (localStorage.getItem('role')!=='admin') {
+      toast.error('go back to the right page')
+      return;
+    }
   return (
     <div className="allPage">
       <button  onClick={createAcount}>create acount agent</button>
