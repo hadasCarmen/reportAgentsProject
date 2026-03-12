@@ -112,7 +112,7 @@ export default function AllReports() {
     return;
   }
   return (
-    <div>
+    <div className="page-wrapper">
       <button onClick={() => navigate("/adminPage")}>
         come back to admin page
       </button>
@@ -152,17 +152,19 @@ export default function AllReports() {
         />
         <button type="submit">filter</button>
       </form>
-      {reports.map((report: any, idx: number) => {
-        return (
-          <div key={idx}>
-            <strong>report {idx + 1}</strong>
-            <br />
-            agent:{report.agent}. category:{report.category}. urgency:
-            {report.urgency}. message:{report.message}. imagePath:
-            {report.imagePath}. sourceType:{report.sourceType}. <br />
-          </div>
-        );
-      })}
+      <div className="items-container">
+        {reports.map((report: any, idx: number) => {
+          return (
+            <div key={idx} className="item-card">
+              <strong>report {idx + 1}</strong>
+              <br />
+              agent:{report.agent}. category:{report.category}. urgency:
+              {report.urgency}. message:{report.message}. imagePath:
+              {report.imagePath}. sourceType:{report.sourceType}. <br />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

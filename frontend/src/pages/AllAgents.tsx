@@ -36,21 +36,23 @@ export default function AllAgents() {
     return;
   }
   return (
-    <div>
+    <div className="page-wrapper">
       <button onClick={() => navigate("/adminPage")}>
         come back to admin page
       </button>
-      {agents.map((agent: any, idx: number) => {
-        return (
-          <div key={idx}>
-            <strong>agent {idx + 1}</strong>
-            <br />
-            agentName:{agent.agent}. role:{agent.role}. agentCode:
-            {agent.agentCode}. createdAt:{agent.createdAt}. updatedAt:
-            {agent.updatedAt}. <br />
-          </div>
-        );
-      })}
+      <div className="items-container">
+        {agents.map((agent: any, idx: number) => {
+          return (
+            <div key={idx} className="item-card">
+              <strong>agent {idx + 1}</strong>
+              <br />
+              agentName:{agent.agent}. role:{agent.role}. agentCode:
+              {agent.agentCode}. createdAt:{agent.createdAt}. updatedAt:
+              {agent.updatedAt}. <br />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
