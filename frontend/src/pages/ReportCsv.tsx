@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 export default function ReportCsv() {
+    const navigate = useNavigate();
+
   const [fileCurrent, setFileCurrent] = useState<File | null>(null);
   // const [numberOfReports,setNumberOfReports]=useState<number>(0)
   const sendCsv = async () => {
@@ -24,10 +27,30 @@ export default function ReportCsv() {
     created?toast.success(`created ${created} reports`):toast.error('not reports created')
     // setNumberOfReports(created)
   };
-
+const adminNavigate = () => {
+    if (localStorage.getItem("role") === "admin") {
+      navigate("/adminPage");
+      return;
+    }
+    toast.error("you not admin!");
+    return;
+  };
+  const agentNavigate = () => {
+    if (localStorage.getItem("role") === "agent") {
+      navigate("/agentPage");
+      return;
+    }
+    toast.error("you have admin page!");
+    return;
+  };
   return (
     <div>
-      
+      <button onClick={adminNavigate}>
+        come back to admin page
+      </button>
+      <button onClick={agentNavigate}>
+        come back to agent page
+      </button>
       <input
         type="file"
         accept=".csv"

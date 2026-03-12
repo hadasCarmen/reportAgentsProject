@@ -29,6 +29,7 @@ export default function Login() {
     }
     const data = await response.json();
     localStorage.setItem("token",`Bearer ${data.token}`);
+    localStorage.setItem("role", data.role);
     toast.success("enjoy in your work");
     if (data.role === "admin") {
       navigate("/adminPage");

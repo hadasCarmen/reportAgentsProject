@@ -5,7 +5,8 @@
 }
 .allPage>*{
     margin: 1rem;
-    background-color: blue;
+    background-color: rgb(73, 73, 91);
     padding: 1rem;
+    color: rgb(1, 254, 153);
 
 }
