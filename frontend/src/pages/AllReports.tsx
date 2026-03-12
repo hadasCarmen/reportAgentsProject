@@ -1,27 +1,8 @@
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-
-type User = {
-  _id: string;
-  username: string;
-  agentCode: String;
-  password: String;
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-type Report = {
-  _id: string;
-  agent: string;
-  category: string;
-  urgency: string;
-  message: string;
-  imagePath: string;
-  sourceType: string;
-  createdAt: Date;
-  updateAt: Date;
-};
+import type { Report } from "../types/IReport.ts";
+import type { User } from "../types/IUser.ts";
 
 export default function AllReports() {
   const navigate = useNavigate();
@@ -29,12 +10,9 @@ export default function AllReports() {
   const [reports, setReports] = useState<Report[]>([]);
   useEffect(() => {
     const myReportsNow = async () => {
-      if (!token) {
-        toast.error("No token found, please login");
-        return;
-      }
+      if (!token) return toast.error("No token found, please login");
+
       const response = await fetch("http://localhost:5000/api/allReports", {
-        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
@@ -58,12 +36,9 @@ export default function AllReports() {
   const [urgency, setUrgency] = useState("");
   useEffect(() => {
     const fetchi = async () => {
-      if (!token) {
-        toast.error("No token found, please login");
-        return;
-      }
+      if (!token) return toast.error("No token found, please login");
+
       const responseAgent = await fetch("http://localhost:5000/api/allUsers", {
-        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
@@ -82,10 +57,7 @@ export default function AllReports() {
   const filtering = async (e: React.SubmitEvent) => {
     e.preventDefault();
 
-    if (!token) {
-      toast.error("No token found, please login");
-      return;
-    }
+    if (!token) return toast.error("No token found, please login");
 
     const params = new URLSearchParams();
 
@@ -96,7 +68,6 @@ export default function AllReports() {
     const response = await fetch(
       `http://localhost:5000/api/allReports?${params}`,
       {
-        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token,
