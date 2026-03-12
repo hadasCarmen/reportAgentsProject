@@ -1,12 +1,16 @@
-.allPage{
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
+.allPage {
+  padding: 40px 20px;
 }
-.allPage>*{
-    margin: 1rem;
-    background-color: rgb(73, 73, 91);
-    padding: 1rem;
-    color: rgb(1, 254, 153);
 
+.allPage h1 {
+  margin-bottom: 30px;
+}
+
+.allPage button {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  margin: 15px auto;
+  padding: 16px;
+  font-size: 16px;
 }
