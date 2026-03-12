@@ -63,6 +63,7 @@ export default function CreateAcount() {
           name="username"
           id="username"
           value={username}
+          placeholder="username"
           onChange={(e) => setUsername(e.target.value)}
         />
         <input
@@ -71,6 +72,7 @@ export default function CreateAcount() {
           name="password"
           id="password"
           value={password}
+          placeholder="password"
           onChange={(e) => setPassword(e.target.value)}
         />
         <input
@@ -79,6 +81,7 @@ export default function CreateAcount() {
           name="agentCode"
           id="agentCode"
           value={agentCode}
+          placeholder="agentCode"
           onChange={(e) => setAgentCode(e.target.value)}
         />
         <input
@@ -86,6 +89,7 @@ export default function CreateAcount() {
           name="role"
           id="role"
           value={role}
+          placeholder="role"
           onChange={(e) => setRole(e.target.value)}
         />
         <button type="submit">create agent</button>

@@ -14,8 +14,10 @@ export const allReports = async (filters) => {
   if (urgency) {
     filtering.urgency=urgency
   }
+console.log(filtering);
 
   const repotrs = await Report.find(filtering);
+console.log(repotrs);
 
   if (!repotrs) {
     throw new Error("repotrs not found");
