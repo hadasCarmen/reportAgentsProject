@@ -1,7 +1,12 @@
 import { atbashCipher } from "../hash/atbash.js";
 import { User } from "../models/User.js";
 
-export const signinUser = async (username, password,agentCode, role='agent') => {
+export const signinUser = async (
+  username,
+  password,
+  agentCode,
+  role = "agent",
+) => {
   const user = await User.findOne({ username: username.trim().toLowerCase() });
 
   if (user) {
@@ -13,11 +18,11 @@ export const signinUser = async (username, password,agentCode, role='agent') => 
   if (role !== "agent" && role !== "admin") {
     throw new Error("role not legal");
   }
-  const atpassword=atbashCipher(password)
+  const atpassword = atbashCipher(password);
   return User.create({
     username: username,
     password: atpassword,
     role: role,
-    agentCode:agentCode
-  })
+    agentCode: agentCode,
+  });
 };

@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import React from "react";
 import { useAuthStore } from "../store/authStore.ts";
+import { jwtDecode } from "jwt-decode";
 
 export default function Login() {
   const { username, password, setUsername, setPassword } = useAuthStore();
@@ -14,7 +15,6 @@ export default function Login() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        
       },
       body: JSON.stringify({
         username,
@@ -28,13 +28,14 @@ export default function Login() {
       return;
     }
     const data = await response.json();
-    localStorage.setItem("token",`Bearer ${data.token}`);
-    localStorage.setItem("role", data.role);
+    localStorage.setItem("token", `Bearer ${data.token}`);
+    const payload: { role: string } = jwtDecode(data.token);
+    localStorage.setItem("role", payload.role);
     toast.success("enjoy in your work");
-    if (data.role === "admin") {
+    if (payload.role === "admin") {
       navigate("/adminPage");
     }
-    if (data.role === "agent") {
+    if (payload.role === "agent") {
       navigate("/agentPage");
     }
   };
