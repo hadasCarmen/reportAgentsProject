@@ -12,6 +12,7 @@ app.use(cors());
 
 app.use(express.json());
 await connectDB()
+app.use('/uploads',express.static('uploads'))
 app.use("/", router);
 
 app.listen(5000, () => {

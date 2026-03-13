@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 export default function ReportHandig() {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const createReport = async (e: React.SubmitEvent) => {
     e.preventDefault();
@@ -12,40 +12,43 @@ export default function ReportHandig() {
       toast.error("No token found, please login");
       return;
     }
+    const formData = new FormData();
+    formData.append("category", category);
+    formData.append("urgency", urgency);
+    formData.append("message", message);
+    formData.append("sourceType", "handing");
+    
+    if (image) {
+      console.log(image);
+      formData.append("image", image);
+    }
     const response = await fetch("http://localhost:5000/api/reportRegular", {
       method: "POST",
       headers: {
-        "Content-Type": "application/json",
         Authorization: token,
       },
-      body: JSON.stringify({
-        category,
-        urgency,
-        message,
-        sourceType: "handing",
-        imagePath,
-      }),
+      body: formData,
     });
     if (!response.ok) {
       setCategory("");
       setUrgency("");
       setMessage("");
-      setImagePath("");
-      toast.error("there is problem with details or agent exist");
+      setImage(null);
+      toast.error("there is problem with details or report exist");
       return;
     }
     toast.success("report created");
     setCategory("");
     setUrgency("");
     setMessage("");
-    setImagePath("");
+    setImage(null);
     return;
   };
 
   const [category, setCategory] = useState("");
   const [urgency, setUrgency] = useState("");
   const [message, setMessage] = useState("");
-  const [imagePath, setImagePath] = useState("");
+  const [image, setImage] = useState<File | null>(null);
 
   const adminNavigate = () => {
     if (localStorage.getItem("role") === "admin") {
@@ -65,12 +68,8 @@ export default function ReportHandig() {
   };
   return (
     <div>
-      <button onClick={adminNavigate}>
-        come back to admin page
-      </button>
-      <button onClick={agentNavigate}>
-        come back to agent page
-      </button>
+      <button onClick={adminNavigate}>come back to admin page</button>
+      <button onClick={agentNavigate}>come back to agent page</button>
       <form action="" onSubmit={createReport}>
         <input
           required
@@ -102,12 +101,17 @@ export default function ReportHandig() {
         />
 
         <input
-          type="text"
-          name="imagePath"
-          id="imagePath"
-          value={imagePath}
-          placeholder="imagepath"
-          onChange={(e) => setImagePath(e.target.value)}
+          type="file"
+          name="image"
+          id="image"
+          accept="image/*"
+          placeholder="upload image"
+          onChange={(e) => {
+            if (e.target.files) {
+              
+              setImage(e.target.files[0]);
+            }
+          }}
         />
         <button type="submit">create report</button>
       </form>

@@ -63,7 +63,7 @@ export default function MyReports() {
               <br />
               agent:{report.agent}. category:{report.category}. urgency:
               {report.urgency}. message:{report.message}. imagePath:
-              {report.imagePath}. sourceType:{report.sourceType}. <br />
+              {<img src={`http://localhost:5000/${report.imagePath}`} alt="" />}. sourceType:{report.sourceType}. <br />
             </div>
           );
         })
