@@ -5,7 +5,7 @@ export const signinUser = async (username, password,agentCode, role='agent') => 
   const user = await User.findOne({ username: username.trim().toLowerCase() });
 
   if (user) {
-    throw new Error("User exist");
+    throw new Error("agent exist");
   }
   if (password.length < 6) {
     throw new Error("password need be more longer");

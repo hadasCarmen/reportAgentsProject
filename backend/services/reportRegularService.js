@@ -15,7 +15,6 @@ export const reportRegular = async (
   if (!category || !urgency || !message || !sourceType || !userid) {
     throw new Error("details missing");
   }
-  console.log(imagePath);
   
   return Report.create({
     category: category,
